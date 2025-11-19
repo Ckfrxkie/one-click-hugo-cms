@@ -1,13 +1,91 @@
-{{ define "main" }}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INSOU – Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(135deg, #f8f9fb, #ffffff);
+      overflow: hidden;
+    }
 
-{{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
+    /* Vibe màu Inside Out */
+    .orb {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      position: absolute;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
 
-{{ partial "short-text" .Params.blurb}}
+    .orb.yell { background: #f3d13b; top: 10%; left: 15%; }
+    .orb.blue { background: #4f7bc4; top: 50%; left: 70%; }
+    .orb.red  { background: #e65353; top: 70%; left: 20%; }
+    .orb.green{ background: #52c788; top: 25%; left: 60%; }
+    .orb.purp { background: #a97cec; top: 60%; left: 55%; }
 
-{{ partial "2-up" .Params }}
+    @keyframes pulse {
+      from { transform: scale(0.85); opacity: 0.5; }
+      to   { transform: scale(1.1); opacity: 0.75; }
+    }
 
-{{ partial "text-and-image" (dict "heading" .Params.values.heading "text" .Params.values.text "buttonText" "Read more" "buttonLink" "/values") }}
+    /* Khối nội dung */
+    .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      top: 35vh;
+      color: #1a1a1a;
+      padding: 0 20px;
+    }
 
-{{ partial "blog" . }}
+    .logo {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
 
-{{ end }}
+    .tagline {
+      margin-top: 12px;
+      font-size: 18px;
+      opacity: 0.75;
+    }
+
+    .coming {
+      margin-top: 30px;
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    .email {
+      margin-top: 40px;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Orbs màu INSOU -->
+  <div class="orb yell"></div>
+  <div class="orb blue"></div>
+  <div class="orb red"></div>
+  <div class="orb green"></div>
+  <div class="orb purp"></div>
+
+  <!-- Nội dung -->
+  <div class="content">
+    <div class="logo">INSOU</div>
+    <div class="tagline">Where Emotions Become Art</div>
+    <div class="coming">COMING SOON</div>
+    <div class="email">Contact: <b>hello@insou.me</b></div>
+  </div>
+
+</body>
+</html>
