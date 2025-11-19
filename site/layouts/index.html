@@ -4,85 +4,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INSOU – Coming Soon</title>
+
   <style>
     body {
       margin: 0;
       padding: 0;
+      background: #fafafb;
       font-family: "Inter", sans-serif;
-      background: linear-gradient(135deg, #f8f9fb, #ffffff);
       overflow: hidden;
+      height: 100vh;
     }
 
-    /* Vibe màu Inside Out */
+    /* Orbs */
     .orb {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
       position: absolute;
-      filter: blur(80px);
-      opacity: 0.55;
-      animation: pulse 6s ease-in-out infinite alternate;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.6;
+      animation: float 9s infinite ease-in-out alternate;
     }
 
-    .orb.yell { background: #f3d13b; top: 10%; left: 15%; }
-    .orb.blue { background: #4f7bc4; top: 50%; left: 70%; }
-    .orb.red  { background: #e65353; top: 70%; left: 20%; }
-    .orb.green{ background: #52c788; top: 25%; left: 60%; }
-    .orb.purp { background: #a97cec; top: 60%; left: 55%; }
+    .orb.yellow { background: #f4d341; top: 5%; left: 10%; animation-delay: 0s; }
+    .orb.blue   { background: #5683d8; top: 60%; left: 70%; animation-delay: 1s; }
+    .orb.red    { background: #ed5757; top: 70%; left: 20%; animation-delay: 2s; }
+    .orb.green  { background: #4ecf9f; top: 25%; left: 62%; animation-delay: 3s; }
+    .orb.purple { background: #b488ff; top: 45%; left: 40%; animation-delay: 4s; }
 
-    @keyframes pulse {
-      from { transform: scale(0.85); opacity: 0.5; }
-      to   { transform: scale(1.1); opacity: 0.75; }
+    @keyframes float {
+      from { transform: translateY(0px) scale(1); opacity: 0.55; }
+      to   { transform: translateY(-40px) scale(1.15); opacity: 0.8; }
     }
 
-    /* Khối nội dung */
+    /* Container */
     .content {
       position: relative;
       z-index: 10;
       text-align: center;
-      top: 35vh;
-      color: #1a1a1a;
-      padding: 0 20px;
+      width: 100%;
+      top: 28vh;
+      color: #222;
+      animation: fadeIn 1.8s ease;
+      padding: 0 26px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0px); }
     }
 
     .logo {
-      font-size: 52px;
-      font-weight: 700;
-      letter-spacing: 4px;
+      font-size: 62px;
+      font-weight: 800;
+      letter-spacing: 6px;
+      margin-bottom: 10px;
+      animation: breathe 5s infinite ease-in-out;
+    }
+
+    @keyframes breathe {
+      0%   { opacity: 1;   letter-spacing: 5px; }
+      50%  { opacity: 0.85; letter-spacing: 8px; }
+      100% { opacity: 1;   letter-spacing: 5px; }
     }
 
     .tagline {
-      margin-top: 12px;
+      font-size: 20px;
+      opacity: 0.78;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    .quote {
       font-size: 18px;
-      opacity: 0.75;
+      opacity: 0.82;
+      font-style: italic;
+      margin-bottom: 40px;
+      animation: fadeQuote 6s infinite ease-in-out alternate;
+    }
+
+    @keyframes fadeQuote {
+      from { opacity: 0.55; }
+      to   { opacity: 0.95; }
     }
 
     .coming {
-      margin-top: 30px;
-      font-size: 28px;
-      font-weight: 500;
+      margin-top: 26px;
+      font-size: 32px;
+      font-weight: 600;
+      opacity: 0.9;
     }
 
     .email {
       margin-top: 40px;
-      font-size: 16px;
-      opacity: 0.8;
+      font-size: 17px;
+      opacity: 0.75;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Orbs màu INSOU -->
-  <div class="orb yell"></div>
+  <!-- Multicolor Soul Orbs -->
+  <div class="orb yellow"></div>
   <div class="orb blue"></div>
   <div class="orb red"></div>
   <div class="orb green"></div>
-  <div class="orb purp"></div>
+  <div class="orb purple"></div>
 
-  <!-- Nội dung -->
+  <!-- Content -->
   <div class="content">
     <div class="logo">INSOU</div>
-    <div class="tagline">Where Emotions Become Art</div>
+    <div class="tagline">Beauty • Emotion • Self Care</div>
+    <div class="quote">"Every soul has a color. Let yours shine."</div>
     <div class="coming">COMING SOON</div>
     <div class="email">Contact: <b>hello@insou.me</b></div>
   </div>
