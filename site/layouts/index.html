@@ -2,124 +2,198 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INSOU – Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INSOU • Coming Soon</title>
+  <meta name="description" content="INSOU – Every nail tells an emotion. Opening very soon."/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 
   <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      background: #fafafb;
-      font-family: "Inter", sans-serif;
-      overflow: hidden;
       height: 100vh;
+      background: #0b0b1a;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
     }
 
-    /* Orbs */
+    /* Floating orbs background */
+    .orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
     .orb {
       position: absolute;
-      width: 260px;
-      height: 260px;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(40px);
       opacity: 0.6;
-      animation: float 9s infinite ease-in-out alternate;
+      animation: float 20s infinite linear;
     }
-
-    .orb.yellow { background: #f4d341; top: 5%; left: 10%; animation-delay: 0s; }
-    .orb.blue   { background: #5683d8; top: 60%; left: 70%; animation-delay: 1s; }
-    .orb.red    { background: #ed5757; top: 70%; left: 20%; animation-delay: 2s; }
-    .orb.green  { background: #4ecf9f; top: 25%; left: 62%; animation-delay: 3s; }
-    .orb.purple { background: #b488ff; top: 45%; left: 40%; animation-delay: 4s; }
+    .joy   { background: radial-gradient(circle, #ffeb3b, #ffd700); width:300px; height:300px; }
+    .sad   { background: radial-gradient(circle, #1e3a8a, #60a5fa); width:250px; height:250px; }
+    .anger { background: radial-gradient(circle, #ef4444, #fb923c); width:280px; height:280px; }
+    .fear  { background: radial-gradient(circle, #9333ea, #c084fc); width:220px; height:220px; }
+    .disgust { background: radial-gradient(circle, #22c55e, #f472b6); width:260px; height:260px; }
 
     @keyframes float {
-      from { transform: translateY(0px) scale(1); opacity: 0.55; }
-      to   { transform: translateY(-40px) scale(1.15); opacity: 0.8; }
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(100px, -100px) rotate(360deg); }
     }
 
-    /* Container */
-    .content {
+    /* Main content */
+    .container {
       position: relative;
       z-index: 10;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      width: 100%;
-      top: 28vh;
-      color: #222;
-      animation: fadeIn 1.8s ease;
-      padding: 0 26px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0px); }
+      padding: 2rem;
     }
 
     .logo {
-      font-size: 62px;
-      font-weight: 800;
-      letter-spacing: 6px;
-      margin-bottom: 10px;
-      animation: breathe 5s infinite ease-in-out;
-    }
-
-    @keyframes breathe {
-      0%   { opacity: 1;   letter-spacing: 5px; }
-      50%  { opacity: 0.85; letter-spacing: 8px; }
-      100% { opacity: 1;   letter-spacing: 5px; }
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffd700, #ff6bcb, #5eead4, #a78bfa, #f87171);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 60px rgba(255,215,0,0.5);
     }
 
     .tagline {
-      font-size: 20px;
-      opacity: 0.78;
-      margin-bottom: 28px;
-      font-weight: 400;
-    }
-
-    .quote {
-      font-size: 18px;
-      opacity: 0.82;
-      font-style: italic;
-      margin-bottom: 40px;
-      animation: fadeQuote 6s infinite ease-in-out alternate;
-    }
-
-    @keyframes fadeQuote {
-      from { opacity: 0.55; }
-      to   { opacity: 0.95; }
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 300;
     }
 
     .coming {
-      margin-top: 26px;
-      font-size: 32px;
-      font-weight: 600;
-      opacity: 0.9;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      margin: 2rem 0;
+      opacity: 0.85;
     }
 
-    .email {
-      margin-top: 40px;
-      font-size: 17px;
-      opacity: 0.75;
+    .notify {
+      margin-top: 3rem;
+    }
+    .notify input {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      width: 320px;
+      max-width: 90vw;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .notify input::placeholder { color: rgba(255,255,255,0.6); }
+    .notify button {
+      margin-left: -100px;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ffd700, #ff6bcb);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .notify button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255,215,0,0.6);
+    }
+
+    .social {
+      margin-top: 4rem;
+      font-size: 1.8rem;
+    }
+    .social a {
+      color: rgba(255,255,255,0.6);
+      margin: 0 1rem;
+      transition: all 0.4s;
+    }
+    .social a:hover { 
+      color: #fff; 
+      transform: translateY(-5px);
+    }
+
+    /* Particle glow */
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse 8s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; transform: scale(1); }
+      50%     { opacity: 0.6; transform: scale(1.1); }
     }
   </style>
 </head>
 
 <body>
+  <div class="orbs" id="orbs"></div>
+  <div class="glow"></div>
 
-  <!-- Multicolor Soul Orbs -->
-  <div class="orb yellow"></div>
-  <div class="orb blue"></div>
-  <div class="orb red"></div>
-  <div class="orb green"></div>
-  <div class="orb purple"></div>
+  <div class="container">
+    <h1 class="logo">INSOU</h1>
+    <p class="tagline">Every nail tells an emotion</p>
+    
+    <h2 class="coming">Coming Soon</h2>
+    
+    <div class="notify">
+      <form onsubmit="alert('Cảm ơn bạn! Chúng tôi sẽ báo khi INSOU chính thức mở cửa 💅✨'); return false;">
+        <input type="email" placeholder="Nhận thông báo mở cửa sớm nhất" required />
+        <button type="submit">Notify Me</button>
+      </form>
+    </div>
 
-  <!-- Content -->
-  <div class="content">
-    <div class="logo">INSOU</div>
-    <div class="tagline">Beauty • Emotion • Self Care</div>
-    <div class="quote">"Every soul has a color. Let yours shine."</div>
-    <div class="coming">COMING SOON</div>
-    <div class="email">Contact: <b>hello@insou.me</b></div>
+    <div class="social">
+      <a href="https://instagram.com/insou.nail" target="_blank">📷</a>
+      <a href="https://tiktok.com/@insou.nail" target="_blank">🎵</a>
+      <a href="https://facebook.com/insou.nail" target="_blank">📘</a>
+    </div>
   </div>
 
+  <script>
+    // Tạo các quả cầu cảm xúc bay lơ lửng
+    const emotions = [
+      {class: 'joy',    top: '10%', left: '10%', delay: '0s',   duration: '25s'},
+      {class: 'sad',    top: '60%', left: '70%', delay: '5s',   duration: '30s'},
+      {class: 'anger',  top: '20%', left: '80%', delay: '10s',  duration: '22s'},
+      {class: 'fear',   top: '70%', left: '15%', delay: '3s',   duration: '28s'},
+      {class: 'disgust',top: '40%', left: '50%', delay: '15s',  duration: '26s'},
+      {class: 'joy',    top: '80%', left: '80%', delay: '8s',   duration: '32s'},
+      {class: 'sad',    top: '15%', left: '40%', delay: '12s',  duration: '24s'},
+    ];
+
+    const orbsContainer = document.getElementById('orbs');
+    emotions.forEach(e => {
+      const orb = document.createElement('div');
+      orb.className = `orb ${e.class}`;
+      orb.style.top = e.top;
+      orb.style.left = e.left;
+      orb.style.animationDelay = e.delay;
+      orb.style.animationDuration = e.duration;
+      orbsContainer.appendChild(orb);
+    });
+  </script>
 </body>
 </html>
