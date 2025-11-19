@@ -1,199 +1,591 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>INSOU • Coming Soon</title>
-  <meta name="description" content="INSOU – Every nail tells an emotion. Opening very soon."/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSOU - Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: white;
+        }
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      height: 100vh;
-      background: #0b0b1a;
-      overflow: hidden;
-      font-family: 'Inter', sans-serif;
-      color: #fff;
-    }
+        .floating-orbs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-    /* Floating orbs background */
-    .orbs {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.6;
-      animation: float 20s infinite linear;
-    }
-    .joy   { background: radial-gradient(circle, #ffeb3b, #ffd700); width:300px; height:300px; }
-    .sad   { background: radial-gradient(circle, #1e3a8a, #60a5fa); width:250px; height:250px; }
-    .anger { background: radial-gradient(circle, #ef4444, #fb923c); width:280px; height:280px; }
-    .fear  { background: radial-gradient(circle, #9333ea, #c084fc); width:220px; height:220px; }
-    .disgust { background: radial-gradient(circle, #22c55e, #f472b6); width:260px; height:260px; }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            filter: blur(80px);
+            animation: float 25s infinite ease-in-out;
+        }
 
-    @keyframes float {
-      0%   { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(100px, -100px) rotate(360deg); }
-    }
+        .orb-joy {
+            width: 450px;
+            height: 450px;
+            background: #FFD700;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
 
-    /* Main content */
-    .container {
-      position: relative;
-      z-index: 10;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-    }
+        .orb-sadness {
+            width: 400px;
+            height: 400px;
+            background: #4A90E2;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
 
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(4rem, 12vw, 9rem);
-      font-weight: 700;
-      background: linear-gradient(90deg, #ffd700, #ff6bcb, #5eead4, #a78bfa, #f87171);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 60px rgba(255,215,0,0.5);
-    }
+        .orb-anger {
+            width: 350px;
+            height: 350px;
+            background: #E74C3C;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 6s;
+        }
 
-    .tagline {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
+        .orb-disgust {
+            width: 380px;
+            height: 380px;
+            background: #2ECC71;
+            top: 30%;
+            right: 20%;
+            animation-delay: 9s;
+        }
 
-    .coming {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      margin: 2rem 0;
-      opacity: 0.85;
-    }
+        .orb-fear {
+            width: 320px;
+            height: 320px;
+            background: #9B59B6;
+            bottom: 30%;
+            right: 5%;
+            animation-delay: 12s;
+        }
 
-    .notify {
-      margin-top: 3rem;
-    }
-    .notify input {
-      padding: 1rem 1.5rem;
-      border: none;
-      border-radius: 50px;
-      width: 320px;
-      max-width: 90vw;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    .notify input::placeholder { color: rgba(255,255,255,0.6); }
-    .notify button {
-      margin-left: -100px;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 50px;
-      background: linear-gradient(45deg, #ffd700, #ff6bcb);
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .notify button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(255,215,0,0.6);
-    }
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(60px, -60px) scale(1.15);
+            }
+            66% {
+                transform: translate(-40px, 40px) scale(0.85);
+            }
+        }
 
-    .social {
-      margin-top: 4rem;
-      font-size: 1.8rem;
-    }
-    .social a {
-      color: rgba(255,255,255,0.6);
-      margin: 0 1rem;
-      transition: all 0.4s;
-    }
-    .social a:hover { 
-      color: #fff; 
-      transform: translateY(-5px);
-    }
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
 
-    /* Particle glow */
-    .glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
-      pointer-events: none;
-      animation: pulse 8s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 0.3; transform: scale(1); }
-      50%     { opacity: 0.6; transform: scale(1.1); }
-    }
-  </style>
+        .logo-container {
+            margin-bottom: 2.5rem;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .logo-image {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 4rem;
+            font-weight: 300;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+
+        .coming-soon {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #D4AF37;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1rem;
+            animation: fadeInScale 1.2s ease-out 0.6s backwards;
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            animation: fadeInUp 1.2s ease-out 0.8s backwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #D4AF37;
+            margin-bottom: 2rem;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .emotions-section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1.2s ease-out 1s backwards;
+        }
+
+        .emotions-container {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .emotion {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            position: relative;
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .emotion::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .emotion:hover::after {
+            opacity: 1;
+        }
+
+        .emotion:hover {
+            transform: translateY(-15px) scale(1.15);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        .emotion-joy { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .emotion-sadness { background: linear-gradient(135deg, #4A90E2, #357ABD); }
+        .emotion-anger { background: linear-gradient(135deg, #E74C3C, #C0392B); }
+        .emotion-disgust { background: linear-gradient(135deg, #2ECC71, #27AE60); }
+        .emotion-fear { background: linear-gradient(135deg, #9B59B6, #8E44AD); }
+
+        .emotion-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 3rem 4rem;
+            max-width: 500px;
+            width: 90%;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+        }
+
+        .emotion-message.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: all;
+        }
+
+        .emotion-message-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #D4AF37;
+        }
+
+        .emotion-message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+
+        .close-message {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-message:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .location-section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 1.2s ease-out 1.2s backwards;
+        }
+
+        .location {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            justify-content: center;
+            font-weight: 300;
+            letter-spacing: 0.05rem;
+        }
+
+        .location i {
+            color: #D4AF37;
+            font-size: 1.2rem;
+        }
+
+        .social-section {
+            animation: fadeInUp 1.2s ease-out 1.4s backwards;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .social-link {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gold-accent {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            top: 0;
+            left: 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .logo-image {
+                width: 200px;
+            }
+            
+            .tagline {
+                font-size: 0.75rem;
+                letter-spacing: 0.1rem;
+            }
+            
+            .coming-soon {
+                font-size: 2.2rem;
+            }
+
+            .coming-soon-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .emotion {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .emotions-container {
+                gap: 1.5rem;
+            }
+
+            .emotion-message {
+                padding: 2rem 2.5rem;
+            }
+
+            .emotion-message-title {
+                font-size: 1.6rem;
+            }
+
+            .emotion-message-text {
+                font-size: 1rem;
+            }
+
+            .section-header {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="orbs" id="orbs"></div>
-  <div class="glow"></div>
-
-  <div class="container">
-    <h1 class="logo">INSOU</h1>
-    <p class="tagline">Every nail tells an emotion</p>
+    <div class="gold-accent"></div>
     
-    <h2 class="coming">Coming Soon</h2>
-    
-    <div class="notify">
-      <form onsubmit="alert('Cảm ơn bạn! Chúng tôi sẽ báo khi INSOU chính thức mở cửa 💅✨'); return false;">
-        <input type="email" placeholder="Nhận thông báo mở cửa sớm nhất" required />
-        <button type="submit">Notify Me</button>
-      </form>
+    <div class="floating-orbs">
+        <div class="orb orb-joy"></div>
+        <div class="orb orb-sadness"></div>
+        <div class="orb orb-anger"></div>
+        <div class="orb orb-disgust"></div>
+        <div class="orb orb-fear"></div>
     </div>
 
-    <div class="social">
-      <a href="https://instagram.com/insou.nail" target="_blank">📷</a>
-      <a href="https://tiktok.com/@insou.nail" target="_blank">🎵</a>
-      <a href="https://facebook.com/insou.nail" target="_blank">📘</a>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="emotion-message" id="emotionMessage">
+        <button class="close-message" id="closeMessage">✕</button>
+        <div class="emotion-message-title" id="messageTitle"></div>
+        <div class="emotion-message-text" id="messageText"></div>
     </div>
-  </div>
 
-  <script>
-    // Tạo các quả cầu cảm xúc bay lơ lửng
-    const emotions = [
-      {class: 'joy',    top: '10%', left: '10%', delay: '0s',   duration: '25s'},
-      {class: 'sad',    top: '60%', left: '70%', delay: '5s',   duration: '30s'},
-      {class: 'anger',  top: '20%', left: '80%', delay: '10s',  duration: '22s'},
-      {class: 'fear',   top: '70%', left: '15%', delay: '3s',   duration: '28s'},
-      {class: 'disgust',top: '40%', left: '50%', delay: '15s',  duration: '26s'},
-      {class: 'joy',    top: '80%', left: '80%', delay: '8s',   duration: '32s'},
-      {class: 'sad',    top: '15%', left: '40%', delay: '12s',  duration: '24s'},
-    ];
+    <div class="container">
+        <h1 class="logo">INSOU</h1>
+        
+        <p class="tagline">Express Your Feelings, One Nail at a Time</p>
+        
+        <div class="coming-soon">COMMING SOON</div>
+        <p class="coming-soon-subtitle">Where Artistry Meets Emotion</p>
+        
+        <div class="emotions-section">
+            <h2 class="section-header">Discover Your Emotion</h2>
+            <div class="emotions-container">
+                <div class="emotion emotion-joy" data-emotion="joy">😊</div>
+                <div class="emotion emotion-sadness" data-emotion="sadness">😢</div>
+                <div class="emotion emotion-anger" data-emotion="anger">😠</div>
+                <div class="emotion emotion-disgust" data-emotion="disgust">🤢</div>
+                <div class="emotion emotion-fear" data-emotion="fear">😨</div>
+            </div>
+        </div>
+        
+        <div class="location-section">
+            <h2 class="section-header">Find Us</h2>
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>116 Hao Nam, Ba Dinh, Hanoi</span>
+              <span>hello@insou.me</span>
+            </div>
+        </div>
+        
+        <div class="social-section">
+            <h2 class="section-header">Follow Our Journey</h2>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
-    const orbsContainer = document.getElementById('orbs');
-    emotions.forEach(e => {
-      const orb = document.createElement('div');
-      orb.className = `orb ${e.class}`;
-      orb.style.top = e.top;
-      orb.style.left = e.left;
-      orb.style.animationDelay = e.delay;
-      orb.style.animationDuration = e.duration;
-      orbsContainer.appendChild(orb);
-    });
-  </script>
+    <script>
+        const emotionData = {
+            joy: {
+                title: "Joy",
+                text: "Celebrate confidence and radiance with vibrant, uplifting nail designs that make you shine."
+            },
+            sadness: {
+                title: "Sadness",
+                text: "Find comfort and tranquility in soothing, calming colors that bring peace to your day."
+            },
+            anger: {
+                title: "Anger",
+                text: "Express your bold, fierce side with powerful designs that command attention."
+            },
+            disgust: {
+                title: "Disgust",
+                text: "Embrace clean, sophisticated elegance with refined and pristine nail artistry."
+            },
+            fear: {
+                title: "Fear",
+                text: "Discover courage through transformative designs that empower and inspire confidence."
+            }
+        };
+
+        const emotions = document.querySelectorAll('.emotion');
+        const emotionMessage = document.getElementById('emotionMessage');
+        const messageTitle = document.getElementById('messageTitle');
+        const messageText = document.getElementById('messageText');
+        const closeMessage = document.getElementById('closeMessage');
+        const overlay = document.getElementById('overlay');
+
+        emotions.forEach(emotion => {
+            emotion.addEventListener('click', function() {
+                const emotionType = this.dataset.emotion;
+                const data = emotionData[emotionType];
+                
+                messageTitle.textContent = data.title;
+                messageText.textContent = data.text;
+                
+                emotionMessage.classList.add('active');
+                overlay.classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            emotionMessage.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        closeMessage.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+
+        // ESC key to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
